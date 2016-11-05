@@ -7,7 +7,7 @@ def hello_world():
 
 @app.route('/user/<username>')
 def show_user_profile(username):
-    # show the user profile for that user
+    # show the user profile for that username
     return 'User %s' % username
 
 @app.route('/post/<int:post_id>')
