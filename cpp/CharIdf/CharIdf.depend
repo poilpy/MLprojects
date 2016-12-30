@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1482936064 source:c:\users\colin\documents\github\mlprojects\cpp\charidf\layer.cpp
+	"Layer.h"
+
+1482936107 c:\users\colin\documents\github\mlprojects\cpp\charidf\layer.h
+	"Neuron.h"
+
+1482985950 c:\users\colin\documents\github\mlprojects\cpp\charidf\neuron.h
+	<vector>
+	<cstdlib>
+	<cmath>
+
+1482984393 source:c:\users\colin\documents\github\mlprojects\cpp\charidf\main.cpp
+	<iostream>
+	<vector>
+	"Net.h"
+	<fstream>
+	<cstdlib>
+
+1482978667 c:\users\colin\documents\github\mlprojects\cpp\charidf\net.h
+	"Neuron.h"
+	<vector>
+	<iostream>
+	<cassert>
+
+1482985962 source:c:\users\colin\documents\github\mlprojects\cpp\charidf\neuron.cpp
+	"Neuron.h"
+
+1482985975 source:c:\users\colin\documents\github\mlprojects\cpp\charidf\net.cpp
+	"Net.h"
+
