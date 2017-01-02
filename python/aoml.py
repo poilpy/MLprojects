@@ -5,4 +5,4 @@ labels = ['apple', 'apple', 'orange', 'orange']
 clf = tree.DecisionTreeClassifier()
 clf.fit(features, labels)
 
-print clf.predict([[150, 0]])
+print(clf.predict([[150, 0]]))
