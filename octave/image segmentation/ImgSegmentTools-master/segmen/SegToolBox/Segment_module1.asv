@@ -1,0 +1,58 @@
+function [] = Segment_module1(ImName, ih, alg)
+% SEGMENTGC  - Main GrabCut segmentation function
+% SEGMENTGC(IMNAME, IH, ALG) - ImName - Image to segment
+% IH - Image Handle
+% ALG - AutoCut or AutoRefine (0 or 1)
+% Authors - Mohit Gupta, Krishnan Ramnath
+% Affiliation - Robotics Institute, CMU, Pittsburgh
+% 2006-05-15
+
+% Global Variables
+global sopt segImageHandle;
+
+% Read input image
+I = imread(ImName);
+I1 = I(:,:,1);
+I2 = I(:,:,2);
+I3 = I(:,:,3);
+
+% Final Segmented Image
+SegImage = zeros(size(I));
+
+% Stop unnecessary warnings
+warning('off','all');
+
+%%%%%%% Marking the Inner Rectangle around the foreground object
+%%%%%%% Get two points from the user
+% Set the image
+set(ih, 'Cdata', I);
+axis('image');axis('ij');axis('off');
+drawnow;
+
+fp = ginput(2);
+fp = round(fp);
+
+% Save the points for future use
+save rectpts fp;
+
+% Width of Strip
+StripWidth = sopt.StripWidth_AC_ACR;       
+
+% Get inner indices
+[fxi,fyi] = meshgrid(min(fp(:,1)):max(fp(:,1)),min(fp(:,2)):max(fp(:,2)));
+InsideFindices = sub2ind(size(I1),fyi, fxi);
+InsideFindices = InsideFindices(:);
+
+
+% Form the Outside rectangular bounding box -- add StripWidth on all 4 sides
+[fxo,fyo] = meshgrid( max((min(fp(:,1)) - StripWidth),1) : min((max(fp(:,1)) + StripWidth), size(I1,2)) , max((min(fp(:,2)) - StripWidth),1) : min((max(fp(:,2)) + StripWidth), size(I1,1)) );
+OutsideFindices = sub2ind(size(I1),fyo, fxo);
+OutsideFindices = OutsideFindices(:);
+
+Bindices = setdiff(OutsideFindices, InsideFindices);
+Allindices = [1:size(I1,1)*size(I1,2)]';
+Findices = InsideFindices;
+
+% Water shed pixels
+L = watershed(I(:,:,1));
+im
