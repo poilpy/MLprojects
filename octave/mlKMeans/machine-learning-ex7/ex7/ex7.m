@@ -29,7 +29,8 @@ clear ; close all; clc
 fprintf('Finding closest centroids.\n\n');
 
 % Load an example dataset that we will be using
-load('ex7data2.mat');
+X = load('fisheriris.txt');
+X = X(:, 1:2);
 
 % Select an initial set of centroids
 K = 3; % 3 Centroids
@@ -75,7 +76,8 @@ pause;
 fprintf('\nRunning K-Means clustering on example dataset.\n\n');
 
 % Load an example dataset
-load('ex7data2.mat');
+X = load('fisheriris.txt');
+X = X(:, 1:2);
 
 % Settings for running K-Means
 K = 3;
